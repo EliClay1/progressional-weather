@@ -1,0 +1,14 @@
+{
+  "id": "thunderstorm_t2",
+  "type": "THUNDERSTORM",
+  "tier": 2,
+  "windStrength": 0.6,
+  "lightningFrequency": 45,
+  "lightningPower": 1.5,
+  "durationRange": [3000, 6000],
+  "canEscalate": true,
+  "properties": {
+    "mobAggressionBoost": 0.2,
+    "shelterAttractionRadius": 32.0
+  }
+}
