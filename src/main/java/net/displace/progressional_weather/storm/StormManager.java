@@ -1,4 +1,4 @@
-package net.displace.progressional_weather.stormdata;
+package net.displace.progressional_weather.storm;
 
 import net.displace.progressional_weather.ProgressionalWeather;
 import net.minecraft.server.level.ServerLevel;

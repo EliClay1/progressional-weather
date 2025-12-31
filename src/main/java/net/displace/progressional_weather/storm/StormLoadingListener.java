@@ -1,6 +1,5 @@
-package net.displace.progressional_weather.eventlisteners;
+package net.displace.progressional_weather.storm;
 
-import net.displace.progressional_weather.stormdata.StormRegistry;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimplePreparableReloadListener;

@@ -1,6 +1,4 @@
-package net.displace.progressional_weather.stormdata;
-
-import net.minecraft.world.phys.Vec3;
+package net.displace.progressional_weather.storm;
 
 import java.util.Map;
 

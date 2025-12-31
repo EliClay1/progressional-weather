@@ -1,11 +1,10 @@
-package net.displace.progressional_weather.stormdata;
+package net.displace.progressional_weather.storm;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.displace.progressional_weather.ProgressionalWeather;
 import net.minecraft.server.packs.resources.ResourceManager;
 
-import java.awt.*;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
