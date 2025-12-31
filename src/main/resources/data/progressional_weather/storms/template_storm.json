@@ -2,13 +2,22 @@
   "id": "thunderstorm_t2",
   "type": "THUNDERSTORM",
   "tier": 2,
+  "direction": "EAST",
   "windStrength": 0.6,
-  "lightningFrequency": 45,
-  "lightningPower": 1.5,
   "durationRange": [3000, 6000],
+  "lightning": [45, 1.5],
   "canEscalate": true,
+  "naturallyGenerates": true,
   "properties": {
-    "mobAggressionBoost": 0.2,
-    "shelterAttractionRadius": 32.0
+    "lightningEffects": {
+      "blockDamage": true,
+      "fireChance": 0.2
+    },
+    "mobSpawnBoost": 1.5,
+    "particleIntensity": 0.3,
+    "skyColor": "#000000",
+    "skyColorDarkness": 0.9,
+    "windDebuff": true,
+    "soundAmplification": "10db"
   }
 }
