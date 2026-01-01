@@ -3,13 +3,14 @@
   "type": "THUNDERSTORM",
   "tier": 2,
   "direction": "EAST",
-  "windStrength": 0.6,
-  "durationRange": [3000, 6000],
+  "wind_strength": 0.6,
+  "min_duration": 3000,
+  "max_duration": 6000,
   "lightning": [45, 1.5],
-  "canEscalate": true,
-  "naturallyGenerates": true,
+  "can_escalate": true,
+  "naturally_generates": true,
   "properties": {
-    "lightningEffects": {
+    "lightning": {
       "blockDamage": true,
       "fireChance": 0.2
     },
