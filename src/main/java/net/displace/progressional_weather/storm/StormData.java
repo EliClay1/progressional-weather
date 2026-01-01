@@ -4,8 +4,8 @@ import com.mojang.serialization.Dynamic;
 import net.displace.progressional_weather.storm.enums.StormDirection;
 import net.displace.progressional_weather.storm.enums.StormType;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 // TODO - add data validation.
 
@@ -17,7 +17,7 @@ public record StormData(
         float windStrength,
         int minDuration,
         int maxDuration,
-        LightningConfig lightning,
+        Optional<LightningConfig> lightning,
         boolean canEscalate,
         boolean naturallyGenerates,
         Map<String, Dynamic<?>> properties

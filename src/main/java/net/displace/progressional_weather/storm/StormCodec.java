@@ -21,7 +21,7 @@ public class StormCodec {
                     Codec.FLOAT.fieldOf("wind_strength").forGetter(StormData::windStrength),
                     Codec.INT.fieldOf("min_duration").forGetter(StormData::minDuration),
                     Codec.INT.fieldOf("max_duration").forGetter(StormData::maxDuration),
-                    LightningConfig.CODEC.fieldOf("lightning").forGetter(StormData::lightning),
+                    LightningConfig.CODEC.optionalFieldOf("lightning").forGetter(StormData::lightning),
                     Codec.BOOL.fieldOf("can_escalate").forGetter(StormData::canEscalate),
                     Codec.BOOL.fieldOf("naturally_generates").forGetter(StormData::naturallyGenerates),
                     Codec.unboundedMap(Codec.STRING, Codec.PASSTHROUGH)
