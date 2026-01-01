@@ -1,19 +1,18 @@
 {
   "id": "thunderstorm_t2",
-  "type": "THUNDERSTORM",
+  "type": "progressional_weather:thunderstorm",
   "tier": 2,
-  "direction": "EAST",
+  "direction": "east",
   "wind_strength": 0.6,
   "min_duration": 3000,
   "max_duration": 6000,
-  "lightning": [45, 1.5],
+  "lightning":  {
+    "strike_chance": 0.45,
+    "damage": 0.8
+  },
   "can_escalate": true,
   "naturally_generates": true,
   "properties": {
-    "lightning": {
-      "blockDamage": true,
-      "fireChance": 0.2
-    },
     "mob_spawn_boost": 1.5,
     "particle_intensity": 0.3,
     "sky_color": "#000000",
