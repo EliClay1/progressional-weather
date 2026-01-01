@@ -14,11 +14,11 @@
       "blockDamage": true,
       "fireChance": 0.2
     },
-    "mobSpawnBoost": 1.5,
-    "particleIntensity": 0.3,
-    "skyColor": "#000000",
-    "skyColorDarkness": 0.9,
-    "windDebuff": true,
-    "soundAmplification": "10db"
+    "mob_spawn_boost": 1.5,
+    "particle_intensity": 0.3,
+    "sky_color": "#000000",
+    "sky_color_darkness": 0.9,
+    "wind_debuff": true,
+    "sound_amplification": 10
   }
 }
