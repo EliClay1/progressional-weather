@@ -16,12 +16,12 @@ public class StormCodec {
             instance.group(
                     Codec.STRING.fieldOf("id").forGetter(StormData::id),
                     StormType.CODEC.fieldOf("type").forGetter(StormData::type),
-                    TIER_CODEC.optionalFieldOf("tier", 1).forGetter(StormData::tier),
+                    TIER_CODEC.fieldOf("tier").orElse(1).forGetter(StormData::tier),
                     StormDirection.CODEC.fieldOf("direction").forGetter(StormData::direction),
                     Codec.FLOAT.fieldOf("wind_strength").forGetter(StormData::windStrength),
                     Codec.INT.fieldOf("min_duration").forGetter(StormData::minDuration),
                     Codec.INT.fieldOf("max_duration").forGetter(StormData::maxDuration),
-                    LightningConfig.CODEC.listOf().fieldOf("lightning").forGetter(StormData::lightning),
+                    LightningConfig.CODEC.fieldOf("lightning").forGetter(StormData::lightning),
                     Codec.BOOL.fieldOf("can_escalate").forGetter(StormData::canEscalate),
                     Codec.BOOL.fieldOf("naturally_generates").forGetter(StormData::naturallyGenerates),
                     Codec.unboundedMap(Codec.STRING, Codec.PASSTHROUGH)

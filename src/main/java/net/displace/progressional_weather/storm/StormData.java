@@ -17,7 +17,7 @@ public record StormData(
         float windStrength,
         int minDuration,
         int maxDuration,
-        List<LightningConfig> lightning,
+        LightningConfig lightning,
         boolean canEscalate,
         boolean naturallyGenerates,
         Map<String, Dynamic<?>> properties
