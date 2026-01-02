@@ -9,6 +9,8 @@ import net.displace.progressional_weather.storm.enums.StormType;
 import java.util.Map;
 import java.util.Optional;
 
+// TODO - Create an object for property config like lightning - only allow certain property values.
+
 public record Storm(
         String id,
         StormType type,
