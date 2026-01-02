@@ -3,8 +3,12 @@ package net.displace.progressional_weather.storm;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.displace.progressional_weather.ProgressionalWeather;
 import net.displace.progressional_weather.storm.enums.StormDirection;
 import net.displace.progressional_weather.storm.enums.StormType;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 
 import java.util.Map;
 import java.util.Optional;
@@ -52,5 +56,8 @@ public record Storm(
                             .optionalFieldOf("properties", Map.of()).forGetter(Storm::properties)
             ).apply(instance, Storm::new)
     );
+
+    public static final ResourceKey<Registry<Storm>> STORM_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(ProgressionalWeather.MODID, "storms"));
 }
 

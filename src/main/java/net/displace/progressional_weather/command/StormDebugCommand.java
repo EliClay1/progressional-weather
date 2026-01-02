@@ -2,7 +2,7 @@ package net.displace.progressional_weather.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
-import net.displace.progressional_weather.storm.StormRegistry;
+import net.displace.progressional_weather.storm.Storm;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -16,7 +16,7 @@ public class StormDebugCommand {
     private int execute(CommandContext<CommandSourceStack> context) {
         ServerLevel server = context.getSource().getLevel();
 
-        var registry = server.registryAccess().lookup(StormRegistry.STORM_REGISTRY_KEY);
+        var registry = server.registryAccess().lookup(Storm.STORM_REGISTRY_KEY);
 
         if (registry.isEmpty()) {
             context.getSource().sendFailure(Component.literal("No storm registry found."));

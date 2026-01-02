@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class StormDataLoader extends SimpleJsonResourceReloadListener<Storm> {
     public StormDataLoader() {
-        super(Storm.CODEC, FileToIdConverter.registry(StormRegistry.STORM_REGISTRY_KEY));
+        super(Storm.CODEC, FileToIdConverter.registry(Storm.STORM_REGISTRY_KEY));
     }
 
     @Override
