@@ -1,9 +1,5 @@
 package net.displace.progressional_weather;
 
-import net.displace.progressional_weather.events.DatapackEvents;
-import net.displace.progressional_weather.storm.Storm;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -86,8 +82,6 @@ public class ProgressionalWeather {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-
-        modEventBus.register(DatapackEvents.class);
 
     }
 

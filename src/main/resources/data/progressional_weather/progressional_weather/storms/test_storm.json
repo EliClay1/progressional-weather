@@ -8,8 +8,7 @@
   "max_duration": 1200,
   "lightning": {
     "strike_chance": 0.15,
-    "damage": 8,
-    "fire_chance": 0.3
+    "damage": 8
   },
   "can_escalate": true,
   "naturally_generates": true,

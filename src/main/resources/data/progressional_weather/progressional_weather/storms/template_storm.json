@@ -1,6 +1,6 @@
 {
   "id": "thunderstorm_t2",
-  "type": "progressional_weather:thunderstorm",
+  "type": "thunderstorm",
   "tier": 2,
   "direction": "east",
   "wind_strength": 0.6,

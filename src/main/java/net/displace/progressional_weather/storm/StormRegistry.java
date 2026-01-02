@@ -16,6 +16,6 @@ public class StormRegistry {
     @SubscribeEvent
     public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
         event.dataPackRegistry(STORM_REGISTRY_KEY, Storm.CODEC, Storm.CODEC);
-        ProgressionalWeather.LOGGER.info("\n\n\n\nRegistered storms datapack registry!\n\n\n\n");
+        ProgressionalWeather.LOGGER.info("Registered storms!");
     }
 }
