@@ -1,6 +1,7 @@
 package net.displace.progressional_weather.storm;
 
 import net.displace.progressional_weather.ProgressionalWeather;
+import net.displace.progressional_weather.storm.managers.StormDataManager;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -8,7 +9,6 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import org.jspecify.annotations.NonNull;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class StormDataLoader extends SimpleJsonResourceReloadListener<Storm> {
@@ -29,6 +29,6 @@ public class StormDataLoader extends SimpleJsonResourceReloadListener<Storm> {
         storms.forEach((id, storm) ->
                 ProgressionalWeather.LOGGER.debug("Loaded storm via reload: {}", id)
         );
-        StormManager.setStorms(storms);
+        StormDataManager.setStorms(storms);
     }
 }
