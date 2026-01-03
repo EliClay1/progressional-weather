@@ -29,18 +29,18 @@ public class ClientWeatherRenderer {
         return currentStorm;
     }
 
-    @SubscribeEvent
-    public static void onRenderFog(ViewportEvent.RenderFog event) {
-        currentStorm.ifPresent(storm -> {
-            float darkeningFactor = storm.getSkyDarkeningFactor();
-
-            // Reduce visibility during storms
-            float fogDistance = 100.0f - (darkeningFactor * 100.0f);
-
-            event.setNearPlaneDistance(0.1f);
-            event.setFarPlaneDistance(fogDistance);
-        });
-    }
+//    @SubscribeEvent
+//    public static void onRenderFog(ViewportEvent.RenderFog event) {
+//        currentStorm.ifPresent(storm -> {
+//            float darkeningFactor = storm.getSkyDarkeningFactor();
+//
+//            // Reduce visibility during storms
+//            float fogDistance = 100.0f - (darkeningFactor * 100.0f);
+//
+//            event.setNearPlaneDistance(0.1f);
+//            event.setFarPlaneDistance(fogDistance);
+//        });
+//    }
 
     public static float getStormSkyColorModifier() {
         return currentStorm
