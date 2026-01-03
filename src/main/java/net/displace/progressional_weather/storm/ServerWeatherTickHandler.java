@@ -3,8 +3,6 @@ package net.displace.progressional_weather.storm;
 import net.displace.progressional_weather.ProgressionalWeather;
 import net.displace.progressional_weather.storm.dataobjects.ActiveStorm;
 import net.displace.progressional_weather.storm.managers.ActiveStormManager;
-import net.minecraft.resources.Identifier;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;

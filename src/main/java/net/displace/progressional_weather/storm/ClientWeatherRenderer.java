@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.displace.progressional_weather.ProgressionalWeather;
 import net.displace.progressional_weather.storm.dataobjects.ActiveStorm;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LevelRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -21,7 +22,6 @@ public class ClientWeatherRenderer {
             currentStorm = Optional.of(activeStorm);
         } else {
             currentStorm = Optional.empty();
-            ProgressionalWeather.LOGGER.info("Storm ended");
         }
     }
 
@@ -35,13 +35,16 @@ public class ClientWeatherRenderer {
             float darkeningFactor = storm.getSkyDarkeningFactor();
 
             // Reduce visibility during storms
-            float fogDistance = 100.0f - (darkeningFactor * 2000.0f);
+            float fogDistance = 100.0f - (darkeningFactor * 100.0f);
 
             event.setNearPlaneDistance(0.1f);
             event.setFarPlaneDistance(fogDistance);
-
-            ProgressionalWeather.LOGGER.debug("Storm fog: Tier {}, distance: {}",
-                    storm.getCurrentTier(), fogDistance);
         });
+    }
+
+    public static float getStormSkyColorModifier() {
+        return currentStorm
+                .map(storm -> 1.0f - storm.getSkyDarkeningFactor())
+                .orElse(1.0f);
     }
 }
