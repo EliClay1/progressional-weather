@@ -29,22 +29,13 @@ public class ClientWeatherRenderer {
         return currentStorm;
     }
 
-//    @SubscribeEvent
-//    public static void onRenderLevel(RenderLevelStageEvent.AfterLevel event) {
-//        Minecraft minecraft = Minecraft.getInstance();
-//        if (minecraft.level == null) {
-//                return;
-//        }
-//        currentStorm.ifPresent(ClientWeatherRenderer::applySkyDarkening);
-//    }
-
     @SubscribeEvent
     public static void onRenderFog(ViewportEvent.RenderFog event) {
         currentStorm.ifPresent(storm -> {
             float darkeningFactor = storm.getSkyDarkeningFactor();
 
             // Reduce visibility during storms
-            float fogDistance = 100.0f - (darkeningFactor * 50.0f);
+            float fogDistance = 100.0f - (darkeningFactor * 2000.0f);
 
             event.setNearPlaneDistance(0.1f);
             event.setFarPlaneDistance(fogDistance);
