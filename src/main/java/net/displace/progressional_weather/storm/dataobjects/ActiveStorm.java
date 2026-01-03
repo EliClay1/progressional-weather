@@ -42,16 +42,6 @@ public class ActiveStorm implements CustomPacketPayload {
         this.isEscalating = false;
     }
 
-    public ActiveStorm createEmptyStorm() {
-        return new ActiveStorm(
-                Identifier.fromNamespaceAndPath(ProgressionalWeather.MODID, "none"),
-                java.util.Optional.empty(),
-                net.minecraft.world.phys.Vec3.ZERO,
-                0,        // ticksRemaining = 0 → isActive() returns false
-                0         // currentTier = 0
-        );
-    }
-
     public void tick() {
         ticksRemaining--;
     }
