@@ -3,6 +3,7 @@ package net.displace.progressional_weather.storm.managers;
 import net.displace.progressional_weather.storm.dataobjects.ActiveStorm;
 import net.displace.progressional_weather.storm.dataobjects.Storm;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class ActiveStormManager {
     private static final Map<Level, ActiveStorm> ACTIVE_STORMS = new HashMap<>();
 
-    public static void initializeStorm(Level level, Identifier stormId, int duration) {
+    public static void initializeStorm(ServerLevel level, Identifier stormId, int duration) {
         Storm stormData = StormDataManager.getStorm(stormId);
         if (stormData == null) {
             throw new IllegalArgumentException("Failed to create storm: " + stormId.getPath());
@@ -27,7 +28,7 @@ public class ActiveStormManager {
     }
 
     // ensures that only 1 storm is active at a given time.
-    public static Optional<ActiveStorm> getActiveStorm(Level level) {
+    public static Optional<ActiveStorm> getActiveStorm(ServerLevel level) {
         ActiveStorm activeStorm = ACTIVE_STORMS.get(level);
         // removes storm if it's no longer active.
         if (activeStorm != null && !activeStorm.isActive()) {
