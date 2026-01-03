@@ -1,0 +1,21 @@
+package net.displace.progressional_weather.events;
+
+import net.displace.progressional_weather.ProgressionalWeather;
+import net.displace.progressional_weather.storm.Storm;
+import net.displace.progressional_weather.storm.StormDataLoader;
+import net.minecraft.resources.Identifier;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+
+@EventBusSubscriber(modid = ProgressionalWeather.MODID, value = Dist.CLIENT)
+public class ModClientEvents {
+
+    @SubscribeEvent
+    public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
+        event.dataPackRegistry(Storm.STORM_REGISTRY_KEY, Storm.CODEC, Storm.CODEC);
+        ProgressionalWeather.LOGGER.info("Successfully registered storms!");
+    }
+}
