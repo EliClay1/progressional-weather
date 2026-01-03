@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StormDataManager {
+    // TODO - there is a mismatch somewhere and storms are registering as minecraft:storm_id. This needs to be changed.
     private static final Map<Identifier, Storm> STORMS = new HashMap<>();
 
     public static Storm getStorm(Identifier id) {

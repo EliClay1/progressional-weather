@@ -3,6 +3,7 @@ package net.displace.progressional_weather.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import net.displace.progressional_weather.storm.dataobjects.Storm;
+import net.displace.progressional_weather.storm.managers.StormDataManager;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -26,7 +27,7 @@ public class StormDebugCommand {
         registry.get().forEach((storm) -> {
             String info = String.format(
                     "- %s: T%d %s %s",
-                    storm.id().getPath(), storm.tier(), storm.type(),
+                    storm.id(), storm.tier(), storm.type(),
                     storm.lightning().isPresent() ? storm.lightning().get().damage() : null
             );
             context.getSource().sendSuccess(() -> Component.literal(info), false);
