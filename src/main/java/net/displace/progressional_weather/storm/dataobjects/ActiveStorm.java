@@ -22,7 +22,14 @@ public class ActiveStorm implements CustomPacketPayload {
             ActiveStorm::getStormCenter,
             ByteBufCodecs.VAR_INT,
             ActiveStorm::getTicksRemaining,
-            ActiveStorm::new
+            ByteBufCodecs.BOOL,
+            ActiveStorm::getActiveBoolean,
+            (id, storm, center, ticks, active) -> {
+                if (!active) {
+                    return ActiveStorm.createInactive();
+                }
+                return new ActiveStorm(id, storm, center, ticks, true);
+            }
     );
 
 
@@ -32,14 +39,27 @@ public class ActiveStorm implements CustomPacketPayload {
     private int ticksRemaining;
     private int currentTier;
     private boolean isEscalating;
+    private boolean isActive;
 
-    public ActiveStorm(Identifier stormId, Storm stormData, Vec3 stormCenter, int duration) {
+
+    public ActiveStorm(Identifier stormId, Storm stormData, Vec3 stormCenter, int duration, boolean isActive) {
         this.stormId = stormId;
         this.stormData = stormData;
         this.stormCenter = stormCenter;
         this.ticksRemaining = duration;
         this.currentTier = stormData.tier();
         this.isEscalating = false;
+        this.isActive = isActive;
+    }
+
+    public static ActiveStorm createInactive() {
+        return new ActiveStorm(
+                Identifier.fromNamespaceAndPath("progressional_weather", "none"),
+                Storm.createBlankStorm(),
+                Vec3.ZERO,
+                0,
+                false
+        );
     }
 
     public void tick() {
@@ -81,11 +101,18 @@ public class ActiveStorm implements CustomPacketPayload {
     }
 
     public Storm getStormData() {
+        if (stormData == null) {
+            return null;
+        }
         return stormData;
     }
 
     public boolean isEscalating() {
         return isEscalating;
+    }
+
+    public boolean getActiveBoolean() {
+        return isActive;
     }
 
     @Override

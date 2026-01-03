@@ -37,6 +37,22 @@ public record Storm(
         }
     }
 
+    public static Storm createBlankStorm() {
+        return new Storm(
+                Identifier.fromNamespaceAndPath("progressional_weather", "storms/none"),
+                StormType.THUNDERSTORM,
+                1,
+                StormDirection.EAST,
+                0,
+                1,
+                2,
+                Optional.empty(),
+                false,
+                false,
+                Map.of()
+        );
+    }
+
     // defines the min and max validation range for storm tiers.
     private static final Codec<Integer> TIER_CODEC = Codec.intRange(1, 3);
 

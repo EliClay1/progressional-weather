@@ -1,5 +1,6 @@
 package net.displace.progressional_weather.storm;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.displace.progressional_weather.ProgressionalWeather;
 import net.displace.progressional_weather.storm.dataobjects.ActiveStorm;
 import net.minecraft.client.Minecraft;
@@ -7,6 +8,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.event.ViewportEvent;
 
 import java.util.Optional;
 
@@ -19,6 +21,7 @@ public class ClientWeatherRenderer {
             currentStorm = Optional.of(activeStorm);
         } else {
             currentStorm = Optional.empty();
+            ProgressionalWeather.LOGGER.info("Storm ended");
         }
     }
 
@@ -26,26 +29,28 @@ public class ClientWeatherRenderer {
         return currentStorm;
     }
 
+//    @SubscribeEvent
+//    public static void onRenderLevel(RenderLevelStageEvent.AfterLevel event) {
+//        Minecraft minecraft = Minecraft.getInstance();
+//        if (minecraft.level == null) {
+//                return;
+//        }
+//        currentStorm.ifPresent(ClientWeatherRenderer::applySkyDarkening);
+//    }
+
     @SubscribeEvent
-    public static void onRenderLevel(RenderLevelStageEvent.AfterLevel event) {
-        Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.level == null) {
-                return;
-        }
-        currentStorm.ifPresent(ClientWeatherRenderer::applySkyDarkening);
-    }
+    public static void onRenderFog(ViewportEvent.RenderFog event) {
+        currentStorm.ifPresent(storm -> {
+            float darkeningFactor = storm.getSkyDarkeningFactor();
 
-    private static void applySkyDarkening(ActiveStorm stormData) {
+            // Reduce visibility during storms
+            float fogDistance = 100.0f - (darkeningFactor * 50.0f);
 
-        float darkeningFactor = stormData.getSkyDarkeningFactor();
+            event.setNearPlaneDistance(0.1f);
+            event.setFarPlaneDistance(fogDistance);
 
-        // This is a simple approach - you can expand this significantly
-        // For now, we'll modify the fog color and brightness
-
-        // Note: Full sky darkening requires modifying sky rendering
-        // For now, this is a placeholder showing where you'd apply effects
-
-        ProgressionalWeather.LOGGER.debug("Storm tier {} at {}",
-                stormData.getCurrentTier(), stormData.getStormCenter());
+            ProgressionalWeather.LOGGER.debug("Storm fog: Tier {}, distance: {}",
+                    storm.getCurrentTier(), fogDistance);
+        });
     }
 }

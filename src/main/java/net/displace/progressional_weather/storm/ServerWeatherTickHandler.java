@@ -10,7 +10,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-@EventBusSubscriber(modid = ProgressionalWeather.MODID, value = Dist.DEDICATED_SERVER)
+@EventBusSubscriber(modid = ProgressionalWeather.MODID)
 public class ServerWeatherTickHandler {
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
@@ -20,7 +20,8 @@ public class ServerWeatherTickHandler {
             ActiveStormManager.getActiveStorm(level).ifPresentOrElse(
                     activeStorm -> {
                         PacketDistributor.sendToPlayersInDimension(level, activeStorm);
-                    }, () -> PacketDistributor.sendToPlayersInDimension(level, )
+                        // or we could just do activeStorm.setActiveBool(false);
+                    }, () -> PacketDistributor.sendToPlayersInDimension(level, ActiveStorm.createInactive())
             );
         });
     }

@@ -23,7 +23,7 @@ public class ActiveStormManager {
         // creates the storm at the spawn point of the world. TODO - Change this to focus on where the player is at.
         Vec3 stormCenter = level.getRespawnData().pos().getCenter();
 
-        ActiveStorm activeStorm = new ActiveStorm(stormId, stormData, stormCenter, duration);
+        ActiveStorm activeStorm = new ActiveStorm(stormId, stormData, stormCenter, duration, true);
         ACTIVE_STORMS.put(level, activeStorm);
     }
 
