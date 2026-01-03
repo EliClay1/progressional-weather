@@ -1,4 +1,4 @@
-package net.displace.progressional_weather.storm;
+package net.displace.progressional_weather.storm.dataobjects;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -1,9 +1,31 @@
-package net.displace.progressional_weather.storm;
+package net.displace.progressional_weather.storm.dataobjects;
 
+import io.netty.buffer.ByteBuf;
+import net.displace.progressional_weather.ProgressionalWeather;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec3;
 
-public class ActiveStorm {
+public class ActiveStorm implements CustomPacketPayload {
+
+    public static final CustomPacketPayload.Type<ActiveStorm> TYPE = new
+            CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(ProgressionalWeather.MODID, "weather_sync"));
+
+    public static final StreamCodec<ByteBuf, ActiveStorm> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.fromCodec(Identifier.CODEC),
+            ActiveStorm::getStormId,
+            ByteBufCodecs.fromCodec(Storm.CODEC),
+            ActiveStorm::getStormData,
+            ByteBufCodecs.fromCodec(Vec3.CODEC),
+            ActiveStorm::getStormCenter,
+            ByteBufCodecs.VAR_INT,
+            ActiveStorm::getTicksRemaining,
+            ActiveStorm::new
+    );
+
+
     private final Identifier stormId;
     private final Storm stormData;
     private final Vec3 stormCenter;
@@ -56,5 +78,18 @@ public class ActiveStorm {
 
     public float getSkyDarkeningFactor() {
         return 0.2f + (currentTier * 0.2f);
+    }
+
+    public Storm getStormData() {
+        return stormData;
+    }
+
+    public boolean isEscalating() {
+        return isEscalating;
+    }
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }

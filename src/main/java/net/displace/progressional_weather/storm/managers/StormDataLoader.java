@@ -1,7 +1,7 @@
-package net.displace.progressional_weather.storm;
+package net.displace.progressional_weather.storm.managers;
 
 import net.displace.progressional_weather.ProgressionalWeather;
-import net.displace.progressional_weather.storm.managers.StormDataManager;
+import net.displace.progressional_weather.storm.dataobjects.Storm;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;

@@ -2,13 +2,15 @@ package net.displace.progressional_weather.events;
 
 import net.displace.progressional_weather.ProgressionalWeather;
 import net.displace.progressional_weather.command.StormDebugCommand;
-import net.displace.progressional_weather.storm.StormDataLoader;
+import net.displace.progressional_weather.storm.managers.StormDataLoader;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.server.command.ConfigCommand;
 
 @EventBusSubscriber(modid = ProgressionalWeather.MODID)
@@ -29,5 +31,10 @@ public class ModEvents {
         StormDataLoader loader = new StormDataLoader(event.getRegistryAccess());
         event.addListener(key, loader);
         ProgressionalWeather.LOGGER.info("Successfully reloaded Storms!");
+    }
+
+    @SubscribeEvent
+    public static void packetRegistry(RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar("1");
     }
 }

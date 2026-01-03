@@ -1,4 +1,4 @@
-package net.displace.progressional_weather.storm;
+package net.displace.progressional_weather.storm.dataobjects;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
@@ -16,7 +16,7 @@ import java.util.Optional;
 // TODO - Create an object for property config like lightning - only allow certain property values.
 
 public record Storm(
-        String id,
+        Identifier id,
         StormType type,
         int tier,
         StormDirection direction,
@@ -42,7 +42,7 @@ public record Storm(
 
     public static Codec<Storm> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
-                    Codec.STRING.fieldOf("id").forGetter(Storm::id),
+                    Identifier.CODEC.fieldOf("id").forGetter(Storm::id),
                     StormType.CODEC.fieldOf("type").forGetter(Storm::type),
                     TIER_CODEC.fieldOf("tier").orElse(1).forGetter(Storm::tier),
                     StormDirection.CODEC.fieldOf("direction").forGetter(Storm::direction),

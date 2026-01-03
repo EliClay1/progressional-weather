@@ -1,18 +1,17 @@
 package net.displace.progressional_weather.storm.managers;
 
-import net.displace.progressional_weather.storm.ActiveStorm;
-import net.displace.progressional_weather.storm.Storm;
+import net.displace.progressional_weather.storm.dataobjects.ActiveStorm;
+import net.displace.progressional_weather.storm.dataobjects.Storm;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class ActiveStormManager {
-    private static Map<Level, ActiveStorm> ACTIVE_STORMS = new HashMap<>();
+    private static final Map<Level, ActiveStorm> ACTIVE_STORMS = new HashMap<>();
 
     public static void initializeStorm(Level level, Identifier stormId, int duration) {
         Storm stormData = StormDataManager.getStorm(stormId);

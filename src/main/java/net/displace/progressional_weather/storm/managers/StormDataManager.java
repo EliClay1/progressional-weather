@@ -1,7 +1,7 @@
 package net.displace.progressional_weather.storm.managers;
 
 import net.displace.progressional_weather.ProgressionalWeather;
-import net.displace.progressional_weather.storm.Storm;
+import net.displace.progressional_weather.storm.dataobjects.Storm;
 import net.displace.progressional_weather.storm.enums.StormType;
 import net.minecraft.resources.Identifier;
 
@@ -16,24 +16,29 @@ public class StormDataManager {
     public static Storm getStorm(Identifier id) {
         return STORMS.get(id);
     }
+
     public static Collection<Storm> getAllStorms() {
         return STORMS.values();
     }
+
     public static Collection<Storm> getStormsByType(StormType type) {
         return STORMS.values().stream()
                 .filter(storm -> storm.type() == type)
                 .collect(Collectors.toList());
     }
+
     public static Collection<Storm> getNaturallyGeneratingStorms() {
         return STORMS.values().stream()
                 .filter(Storm::naturallyGenerates)
                 .collect(Collectors.toList());
     }
-    public static void setStorms(Map<Identifier, Storm> storms) {
+
+    protected static void setStorms(Map<Identifier, Storm> storms) {
         STORMS.clear();
         STORMS.putAll(storms);
-        ProgressionalWeather.LOGGER.info("Loaded {} storms", STORMS.size());
+//        ProgressionalWeather.LOGGER.info("Loaded {} storms", STORMS.size());
     }
+
     protected static void clearStorms(){
         STORMS.clear();
     }
